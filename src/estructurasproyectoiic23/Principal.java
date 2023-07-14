@@ -4,5 +4,6 @@ public class Principal {
 
     public static void main(String[] args) {
         // Iniciando Código de Nuestro Proyecto 
+        System.out.println("Hola mundo");
     }   
 }
