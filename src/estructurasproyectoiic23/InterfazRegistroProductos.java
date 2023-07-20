@@ -80,9 +80,4 @@ public class InterfazRegistroProductos {
         String categoria = JOptionPane.showInputDialog("Ingrese la categoría a buscar:");
         listaDobleEnlazada.buscarProductosPorCategoriaRecursivo(categoria);
     }
-
-    public static void main(String[] args) {
-        InterfazRegistroProductos interfaz = new InterfazRegistroProductos();
-        interfaz.mostrarMenu();
-    }
 }

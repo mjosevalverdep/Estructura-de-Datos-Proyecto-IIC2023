@@ -4,91 +4,91 @@ import javax.swing.JOptionPane;
 
 
 public class ListaEnlazadaCircular {
-    private Nodo first;
-    private int size;
+    private Nodo primero;
+    private int tamaño;
 
     private class Nodo {
         private Producto producto;
-        private Nodo next;
+        private Nodo siguiente;
 
         public Nodo(Producto producto) {
             this.producto = producto;
-            this.next = null;
+            this.siguiente = null;
         }
     }
 
     public ListaEnlazadaCircular() {
-        first = null;
-        size = 0;
+        primero = null;
+        tamaño = 0;
     }
 
     public void agregarProducto(Producto producto) {
         Nodo newNode = new Nodo(producto);
-        if (first == null) {
-            first = newNode;
-            newNode.next = first;
+        if (primero == null) {
+            primero = newNode;
+            newNode.siguiente = primero;
         } else {
-            Nodo last = first;
-            while (last.next != first) {
-                last = last.next;
+            Nodo last = primero;
+            while (last.siguiente != primero) {
+                last = last.siguiente;
             }
-            last.next = newNode;
-            newNode.next = first;
+            last.siguiente = newNode;
+            newNode.siguiente = primero;
         }
-        size++;
+        tamaño++;
     }
 
     public void eliminarProducto(int codigo) {
-        if (first == null){
+        if (primero == null){
            JOptionPane.showMessageDialog(null, "El producto indicado no se pudo eliminar", "Lista vacía",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Nodo current = first;
+        Nodo current = primero;
         Nodo previous = null;
 
         do {
             if (current.producto.getCodigo() == codigo) {
                 if (previous != null) {
-                    previous.next = current.next;
-                    if (current == first) {
-                        first = current.next;
+                    previous.siguiente = current.siguiente;
+                    if (current == primero) {
+                        primero = current.siguiente;
                     }
-                } else if (current == first) {
-                    first = current.next;
+                } else if (current == primero) {
+                    primero = current.siguiente;
                 }
-                size--;
+                tamaño--;
                 return;
             }
             previous = current;
-            current = current.next;
-        } while (current != first);
+            current = current.siguiente;
+        } while (current != primero);
     }
 
     //Método para rotar productos en la lista enlazada circular
     public void rotarProductos(int numRotaciones) {
-        if (first == null || numRotaciones <= 0) {
+        if (primero == null || numRotaciones <= 0) {
             JOptionPane.showMessageDialog(null, "No hay productos para rotar", "Lista vacía",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }else {
             JOptionPane.showMessageDialog(null, "Productos Rotados Exitosamente","Lista",JOptionPane.INFORMATION_MESSAGE);
         }
-        Nodo current = first;
+        Nodo current = primero;
         for (int i = 0; i < numRotaciones - 1; i++) {
-            current = current.next;
+            current = current.siguiente;
         }
-        first = current.next;
+        primero = current.siguiente;
     }
     
     //Método mostrar productos rotados
     public void mostrarProductos() {
-        if (first == null) {
+        if (primero == null) {
             JOptionPane.showMessageDialog(null, "No hay productos en lista", "Lista vacía", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        Nodo current = first;
+        Nodo current = primero;
         StringBuilder infoBuilder = new StringBuilder();
         infoBuilder.append("--Lista de productos después de la rotación--").append("\n\n");
         do {
@@ -97,8 +97,8 @@ public class ListaEnlazadaCircular {
                     .append("Fecha de caducidad: ").append(current.producto.getFechaCaducidad()).append("\n")
                     .append("Categoría: ").append(current.producto.getCategoria()).append("\n")
                     .append("----------------------------------------------------------\n");
-            current = current.next;
-        } while (current != first);
+            current = current.siguiente;
+        } while (current != primero);
         JOptionPane.showMessageDialog(null, infoBuilder.toString());
     }
 }
