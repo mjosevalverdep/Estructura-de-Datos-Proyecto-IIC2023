@@ -1,0 +1,77 @@
+package estructurasproyectoiic23;
+
+public class ListaEnlazadaSimple {
+    private Nodo cabeza;
+    private int tamaño;
+    
+    public ListaEnlazada() {
+        this.cabeza = null;
+        this.tamaño = 0;
+    }
+    
+    public boolean estaVacia() {
+        return cabeza == null;
+    }
+    
+    public int getTamaño() {
+        return tamaño;
+    }
+    
+    public void insertar(Producto producto) {
+        Nodo nuevoNodo = new Nodo(producto);
+        
+        if (estaVacia()) {
+            cabeza = nuevoNodo;
+        } else {
+            Nodo actual = cabeza;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+            }
+            actual.siguiente = nuevoNodo;
+        }
+        
+        tamaño++;
+    }
+    
+    public void eliminar(int idProducto) {
+        if (estaVacia()) {
+            return;
+        }
+        
+        if (cabeza.producto.getId() == idProducto) {
+            cabeza = cabeza.siguiente;
+            tamaño--;
+            return;
+        }
+        
+        Nodo actual = cabeza;
+        Nodo anterior = null;
+        while (actual != null && actual.producto.getId() != idProducto) {
+            anterior = actual;
+            actual = actual.siguiente;
+        }
+        
+        if (actual == null) {
+            return;
+        }
+        
+        anterior.siguiente = actual.siguiente;
+        tamaño--;
+    }
+    
+    public void mostrar() {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía.");
+            return;
+        }
+        
+        Nodo actual = cabeza;
+        while (actual != null) {
+            System.out.println("ID del producto: " + actual.producto.getId());
+            System.out.println("Nombre del producto: " + actual.producto.getNombre());
+            System.out.println("Precio del producto: " + actual.producto.getPrecio());
+            System.out.println("---------------------------");
+            actual = actual.siguiente;
+        }
+    }
+}
