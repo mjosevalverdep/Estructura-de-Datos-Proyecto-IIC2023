@@ -5,10 +5,14 @@ import javax.swing.JOptionPane;
 public class InterfazRegistroProductos {
     private ListaEnlazadaCircular listaEnlazadaCircular;
     private ListaDobleEnlazada listaDobleEnlazada;
+    private Pila pila;
+    private Cola cola;
 
     public InterfazRegistroProductos() {
         listaEnlazadaCircular = new ListaEnlazadaCircular();
         listaDobleEnlazada = new ListaDobleEnlazada();
+        pila= new Pila();
+        cola= new Cola();
     }
 
     public void mostrarMenu() {
@@ -18,6 +22,8 @@ public class InterfazRegistroProductos {
                 "3. Rotar productos (lista enlazada circular)\n" +
                 "4. Mostrar productos (lista doblemente enlazada)\n" +
                 "5. Buscar productos por categoría (lista doblemente enlazada)\n" +
+                "6. Ordenar productos A-Z\n"+
+                "7. Ordenar productos Z-A\n"+
                 "0. Salir";
 
         int opcion;
@@ -39,6 +45,12 @@ public class InterfazRegistroProductos {
                 case 5:
                     buscarProductosPorCategoria();
                     break;
+                case 6:
+                    mostrarPilaAZ();
+                    break;
+                case 7:
+                    mostrarColaAZ();
+                    break; 
                 case 0:
                     JOptionPane.showMessageDialog(null, "Saliendo del programa...");
                     break;
@@ -79,5 +91,15 @@ public class InterfazRegistroProductos {
     private void buscarProductosPorCategoria() {
         String categoria = JOptionPane.showInputDialog("Ingrese la categoría a buscar:");
         listaDobleEnlazada.buscarProductosPorCategoriaRecursivo(categoria);
+    }
+    
+    private void mostrarPilaAZ() {
+        pila.ordenarAZ();
+        pila.imprimirPila();
+    }
+
+    private void mostrarColaAZ() {
+        cola.ordenarZA();
+        cola.imprimirCola();
     }
 }
