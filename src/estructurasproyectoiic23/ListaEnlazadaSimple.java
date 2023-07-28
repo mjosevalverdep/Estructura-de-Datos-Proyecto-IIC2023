@@ -1,24 +1,31 @@
-/* package estructurasproyectoiic23;
+package estructurasproyectoiic23;
 
 public class ListaEnlazadaSimple {
-    public ListaEnlazadaSimple() {
-        inicio = null;
-    }
-    public void modificarProducto(int indice, Producto nuevoProducto) {
-        if (indice < 0 || inicio == null) {
-            throw new IndexOutOfBoundsException("Índice fuera de rango o lista vacía");
-        }
-        Nodo temp = inicio;
-        for (int i = 0; i < indice; i++) {
-            if (temp.siguiente == null) {
-                throw new IndexOutOfBoundsException("Índice fuera de rango");
-            }
-            temp = temp.siguiente;
-        }
-        temp.producto = nuevoProducto;
-    }
-} */
+    private Nodo cabeza;
 
-//Se comento toda la clase hasta el momento debido a que tiene un error en la clase nodo , falta que Daniel agregue 
-//la clase y también lo implementé al menú
-//RECUERDE DESCOMENTAR LA CLASE
+    public class Nodo {
+    private Producto producto;
+    private Nodo siguiente;
+
+    public Nodo(Producto producto) {
+        this.producto = producto;
+        this.siguiente = null;
+    }
+
+    public ListaEnlazadaSimple() {
+        cabeza = null;
+    }
+
+    public void modificarProducto(int codigo, String nuevoNombre, String nuevaFechaCaducidad, String nuevaCategoria) {
+        Nodo actual = cabeza;
+        while (actual != null) {
+            if (actual.getProducto().getCodigo() == codigo) {
+                actual.getProducto().setNombre(nuevoNombre);
+                actual.getProducto().setFechaCaducidad(nuevaFechaCaducidad);
+                actual.getProducto().setCategoria(nuevaCategoria);
+                break;
+            }
+            actual = actual.getSiguiente();
+        }
+    }
+}

@@ -22,8 +22,9 @@ public class InterfazRegistroProductos {
                 "3. Rotar productos (lista enlazada circular)\n" +
                 "4. Mostrar productos (lista doblemente enlazada)\n" +
                 "5. Buscar productos por categoría (lista doblemente enlazada)\n" +
-                "6. Ordenar productos A-Z\n"+
-                "7. Ordenar productos Z-A\n"+
+                "6. Modificar productos (Lista enlazada simple)\n" +
+                "7. Ordenar productos A-Z\n"+
+                "8. Ordenar productos Z-A\n"+
                 "0. Salir";
 
         int opcion;
@@ -46,9 +47,12 @@ public class InterfazRegistroProductos {
                     buscarProductosPorCategoria();
                     break;
                 case 6:
-                    mostrarPilaAZ();
+                    modificarProducto();
                     break;
                 case 7:
+                    mostrarPilaAZ();
+                    break;
+                case 8:
                     mostrarColaAZ();
                     break; 
                 case 0:
@@ -91,6 +95,10 @@ public class InterfazRegistroProductos {
     private void buscarProductosPorCategoria() {
         String categoria = JOptionPane.showInputDialog("Ingrese la categoría a buscar:");
         listaDobleEnlazada.buscarProductosPorCategoriaRecursivo(categoria);
+    }
+
+    private void modificarProducto(){
+        ListaEnlazadaSimple.modificarProducto();
     }
     
     private void mostrarPilaAZ() {
