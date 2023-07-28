@@ -1,7 +1,9 @@
 package estructurasproyectoiic23;
 
-public class ListaEnlazadaSimple {
-    private Nodo cabeza;
+import javax.swing.JOptionPane;
+
+class ListaEnlazadaSimple {
+    Nodo cabeza;
 
     public class Nodo {
     private Producto producto;
@@ -11,22 +13,25 @@ public class ListaEnlazadaSimple {
         this.producto = producto;
         this.siguiente = null;
     }
-
-    public ListaEnlazadaSimple() {
-        cabeza = null;
-    }
-
-    public void modificarProducto(int codigo, String nuevoNombre, String nuevaFechaCaducidad, String nuevaCategoria) {
+    
+    public void modificarProducto(int codigo) {
         Nodo actual = cabeza;
-        while (actual != null) {
-            if (actual.getProducto().getCodigo() == codigo) {
-                actual.getProducto().setNombre(nuevoNombre);
-                actual.getProducto().setFechaCaducidad(nuevaFechaCaducidad);
-                actual.getProducto().setCategoria(nuevaCategoria);
-                break;
+        
+        while (current != null) {
+            if (actual.producto.getCodigo() == codigo) {
+                String nuevoNombre = JOptionPane.showInputDialog(null, "Ingresa el nuevo nombre:");
+                String nuevaFechaCaducidad = JOptionPane.showInputDialog(null, "Ingresa la nueva fecha de caducidad:");
+                String nuevaCategoria = JOptionPane.showInputDialog(null, "Ingresa la nueva categoría:");
+                
+                actual.producto.setNombre(nuevoNombre);
+                actual.producto.setFechaCaducidad(nuevaFechaCaducidad);
+                actual.producto.setCategoria(nuevaCategoria);
+
+                return;
             }
-            actual = actual.getSiguiente();
+            actual = actual.siguiente;
         }
-        System.out.println("Producto con código " + codigo + " no encontrado.");
+        
+        JOptionPane.showMessageDialog(null, "Producto con el código " + codigo + " no se ha encontrado.");
     }
 }
