@@ -27,5 +27,6 @@ public class ListaEnlazadaSimple {
             }
             actual = actual.getSiguiente();
         }
+        System.out.println("Producto con código " + codigo + " no encontrado.");
     }
 }
