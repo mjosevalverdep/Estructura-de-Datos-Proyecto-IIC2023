@@ -102,4 +102,6 @@ public class InterfazRegistroProductos {
         cola.ordenarZA();
         cola.imprimirCola();
     }
-}
+}  
+
+
