@@ -65,7 +65,7 @@ public class InterfazRegistroProductos {
             }
         } while (opcion != 0);
     }
-    private void agregarProducto() {
+    public void agregarProducto() {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre del producto:");
         int codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del producto:"));
         String fechaCaducidad = JOptionPane.showInputDialog("Ingrese la fecha de caducidad del producto:");
@@ -75,42 +75,45 @@ public class InterfazRegistroProductos {
         listaEnlazadaCircular.agregarProducto(nuevoProducto);
         listaDobleEnlazada.agregarProducto(nuevoProducto);
         listaEnlazadaSimple.agregarProducto(nuevoProducto);
+        pila.agregarProducto(nuevoProducto);
+        cola.agregarProducto(nuevoProducto);
 
         JOptionPane.showMessageDialog(null, "Producto agregado exitosamente.");
     }
 
-    private void eliminarProducto() {
+
+    public void eliminarProducto() {
         int codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del producto a eliminar:"));
         listaEnlazadaCircular.eliminarProducto(codigo);
         listaDobleEnlazada.eliminarProducto(codigo);
     }
 
-    private void rotarProductos() {
+    public void rotarProductos() {
         int numRotaciones = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de rotaciones:"));
         listaEnlazadaCircular.rotarProductos(numRotaciones);
         listaEnlazadaCircular.mostrarProductos();
     }
 
-    private void mostrarProductos() {
+    public void mostrarProductos() {
         listaDobleEnlazada.mostrarProductos();
     }
 
-    private void buscarProductosPorCategoria() {
+    public void buscarProductosPorCategoria() {
         String categoria = JOptionPane.showInputDialog("Ingrese la categoría a buscar:");
         listaDobleEnlazada.buscarProductosPorCategoriaRecursivo(categoria);
     }
 
-    private void modificarProducto(){
+    public void modificarProducto(){
         int codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del producto a modificar:"));
         listaEnlazadaSimple.modificarProducto(codigo);
     }
     
-    private void mostrarPilaAZ() {
+    public void mostrarPilaAZ() {
         pila.ordenarAZ();
         pila.imprimirPila();
     }
 
-    private void mostrarColaAZ() {
+    public void mostrarColaAZ() {
         cola.ordenarZA();
         cola.imprimirCola();
     }
