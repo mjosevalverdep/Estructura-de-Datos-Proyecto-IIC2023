@@ -5,14 +5,16 @@ import javax.swing.JOptionPane;
 public class InterfazRegistroProductos {
     private ListaEnlazadaCircular listaEnlazadaCircular;
     private ListaDobleEnlazada listaDobleEnlazada;
+    private ListaEnlazadaSimple listaEnlazadaSimple;
     private Pila pila;
     private Cola cola;
 
     public InterfazRegistroProductos() {
         listaEnlazadaCircular = new ListaEnlazadaCircular();
         listaDobleEnlazada = new ListaDobleEnlazada();
-        pila= new Pila();
-        cola= new Cola();
+        listaEnlazadaSimple = new ListaEnlazadaSimple();
+        pila = new Pila();
+        cola = new Cola();
     }
 
     public void mostrarMenu() {
@@ -72,6 +74,7 @@ public class InterfazRegistroProductos {
         Producto nuevoProducto = new Producto(nombre, codigo, fechaCaducidad, categoria);
         listaEnlazadaCircular.agregarProducto(nuevoProducto);
         listaDobleEnlazada.agregarProducto(nuevoProducto);
+        listaEnlazadaSimple.agregarProducto(nuevoProducto);
 
         JOptionPane.showMessageDialog(null, "Producto agregado exitosamente.");
     }
@@ -98,7 +101,8 @@ public class InterfazRegistroProductos {
     }
 
     private void modificarProducto(){
-        ListaEnlazadaSimple.modificarProducto();
+        int codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del producto a modificar:"));
+        listaEnlazadaSimple.modificarProducto(codigo);
     }
     
     private void mostrarPilaAZ() {
@@ -111,5 +115,3 @@ public class InterfazRegistroProductos {
         cola.imprimirCola();
     }
 }  
-
-

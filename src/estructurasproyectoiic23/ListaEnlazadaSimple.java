@@ -1,37 +1,36 @@
 package estructurasproyectoiic23;
-
 import javax.swing.JOptionPane;
+import java.util.LinkedList;
 
-class ListaEnlazadaSimple {
-    Nodo cabeza;
+public class ListaEnlazadaSimple {
+    private LinkedList<Producto> listaProductos;
 
-    public class Nodo {
-    private Producto producto;
-    private Nodo siguiente;
-
-    public Nodo(Producto producto) {
-        this.producto = producto;
-        this.siguiente = null;
+    public ListaEnlazadaSimple() {
+        listaProductos = new LinkedList<>();
     }
     
-    public void modificarProducto(int codigo) {
-        Nodo actual = cabeza;
-        
-        while (current != null) {
-            if (actual.producto.getCodigo() == codigo) {
-                String nuevoNombre = JOptionPane.showInputDialog(null, "Ingresa el nuevo nombre:");
-                String nuevaFechaCaducidad = JOptionPane.showInputDialog(null, "Ingresa la nueva fecha de caducidad:");
-                String nuevaCategoria = JOptionPane.showInputDialog(null, "Ingresa la nueva categoría:");
-                
-                actual.producto.setNombre(nuevoNombre);
-                actual.producto.setFechaCaducidad(nuevaFechaCaducidad);
-                actual.producto.setCategoria(nuevaCategoria);
+    public void agregarProducto(Producto producto) {
+        listaProductos.add(producto);
+    }
 
-                return;
+    public void modificarProducto(int codigo) {
+        for (Producto producto : listaProductos) {
+            if (producto.getCodigo() == codigo) {
+                String nuevoNombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre del producto:");
+                producto.setNombre(nuevoNombre);
+
+                String nuevaFechaCaducidad = JOptionPane.showInputDialog("Ingrese la nueva fecha de caducidad del producto:");
+                producto.setFechaCaducidad(nuevaFechaCaducidad);
+
+                String nuevaCategoria = JOptionPane.showInputDialog("Ingrese la nueva categoría del producto:");
+                producto.setCategoria(nuevaCategoria);
+
+                JOptionPane.showMessageDialog(null, "Producto modificado exitosamente!");
+                break;
             }
-            actual = actual.siguiente;
+            else{
+                JOptionPane.showMessageDialog(null, "El código es incorrecto. Vuelva a ingresarlo correctamente.");
+            }
         }
-        
-        JOptionPane.showMessageDialog(null, "Producto con el código " + codigo + " no se ha encontrado.");
     }
 }
